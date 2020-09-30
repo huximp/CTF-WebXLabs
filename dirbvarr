@@ -1,0 +1,37 @@
+ 
+ ➜  scripsts_BASH dirb http://192.168.1.18 lista.txt 
+ 
+ -----------------
+ DIRB v2.22    
+ By The Dark Raver
+ -----------------
+ 
+ START_TIME: Wed Sep 30 12:11:28 2020
+ URL_BASE: http://192.168.1.18/
+ WORDLIST_FILES: lista.txt
+ 
+ -----------------
+ 
+ GENERATED WORDS: 670                                                           
+ 
+ ---- Scanning URL: http://192.168.1.18/ ----
+ ==> DIRECTORY: http://192.168.1.18/downloads/                                                       
+ ==> DIRECTORY: http://192.168.1.18/files/                                                           
+ ==> DIRECTORY: http://192.168.1.18/forum/                                                           
+ ==> DIRECTORY: http://192.168.1.18/lab/                                                             
+ 
+ ---- Entering directory: http://192.168.1.18/downloads/ ----
+ 
+ ---- Entering directory: http://192.168.1.18/files/ ----
+ (!) WARNING: Directory IS LISTABLE. No need to scan it.                        
+ (Use mode '-w' if you want to scan it anyway)
+ 
+ ---- Entering directory: http://192.168.1.18/forum/ ----
+ 
+ ---- Entering directory: http://192.168.1.18/lab/ ----
+ + http://192.168.1.18/lab/index (CODE:200|SIZE:1503)                                                
+ 
+ -----------------
+ END_TIME: Wed Sep 30 12:11:29 2020
+ DOWNLOADED: 2680 - FOUND: 1
+ 

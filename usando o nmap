@@ -1,0 +1,59 @@
+# Nmap 7.80 scan initiated Tue Sep 29 11:52:13 2020 as: nmap -A -sS -D RND -p- -Pn -T3 -oN vm 192.168.1.18
+Nmap scan report for WebXLabs.domain.name (192.168.1.18)
+Host is up (0.00030s latency).
+Not shown: 65529 closed ports
+PORT      STATE SERVICE VERSION
+22/tcp    open  ssh     OpenSSH 6.0p1 Debian 4 (protocol 2.0)
+| ssh-hostkey: 
+|   1024 0e:2d:d1:cd:a8:38:a5:96:d2:d6:37:f6:54:ee:e5:5c (DSA)
+|   2048 02:2a:25:77:fa:6a:5b:5f:19:b5:6f:c9:0d:9c:82:77 (RSA)
+|_  256 c1:79:e0:7e:51:92:8b:15:2d:85:9d:14:d4:1e:48:c5 (ECDSA)
+80/tcp    open  http    Apache httpd 2.2.22 ((Debian))
+| http-robots.txt: 6 disallowed entries 
+| /administration/ /locale/ /themes/ /print.php /lab/ 
+|_/lab/sqli/
+|_http-server-header: Apache/2.2.22 (Debian)
+| http-title: XLabs CTF (Capture The Flag) - News
+|_Requested resource was news.php
+111/tcp   open  rpcbind 2-4 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|   100000  3,4          111/udp6  rpcbind
+|   100024  1          38385/udp   status
+|   100024  1          42773/tcp   status
+|   100024  1          45902/tcp6  status
+|_  100024  1          49535/udp6  status
+3306/tcp  open  mysql   MySQL 5.5.31-0+wheezy1
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.5.31-0+wheezy1
+|   Thread ID: 120
+|   Capabilities flags: 63487
+|   Some Capabilities: DontAllowDatabaseTableColumn, Support41Auth, IgnoreSpaceBeforeParenthesis, ODBCClient, SupportsLoadDataLocal, IgnoreSigpipes, SupportsTransactions, ConnectWithDatabase, Speaks41ProtocolNew, InteractiveClient, Speaks41ProtocolOld, FoundRows, SupportsCompression, LongColumnFlag, LongPassword, SupportsMultipleStatments, SupportsAuthPlugins, SupportsMultipleResults
+|   Status: Autocommit
+|   Salt: U|1y3.-7l:}(L&u?w\F)
+|_  Auth Plugin Name: mysql_native_password
+8080/tcp  open  http    Apache Tomcat/Coyote JSP engine 1.1
+| http-methods: 
+|_  Potentially risky methods: PUT DELETE
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-server-header: Apache-Coyote/1.1
+|_http-title: Apache Tomcat
+42773/tcp open  status  1 (RPC #100024)
+MAC Address: 08:00:27:C5:46:6D (Oracle VirtualBox virtual NIC)
+Device type: general purpose
+Running: Linux 2.6.X|3.X
+OS CPE: cpe:/o:linux:linux_kernel:2.6 cpe:/o:linux:linux_kernel:3
+OS details: Linux 2.6.32 - 3.10
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   0.30 ms WebXLabs.domain.name (192.168.1.18)
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Sep 29 11:52:27 2020 -- 1 IP address (1 host up) scanned in 14.26 seconds
